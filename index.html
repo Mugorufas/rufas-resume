@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Glass Morphism UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 30px;
+        }
+
+        .name {
+            font-size: 3em;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .title {
+            font-size: 1.3em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            color: #fff;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .card-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 12px 20px;
+            text-align: center;
+            color: #fff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85em;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .date-range {
+            font-weight: 500;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 20px;
+            margin-bottom: 8px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "▸";
+            position: absolute;
+            left: -15px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .name {
+                font-size: 2em;
+            }
+
+            .title {
+                font-size: 1.1em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="name">Your Name</h1>
+            <p class="title">IT Graduate | Full Stack Developer</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon">📧</span>
+                    <span>your.email@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📱</span>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <span>Your City, Country</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">🔗</span>
+                    <span>linkedin.com/in/yourprofile</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Summary -->
+        <section>
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="glass-card">
+                <p class="card-description">
+                    Enthusiastic IT graduate with a strong foundation in software development, web technologies, and system design. 
+                    Passionate about creating innovative solutions and eager to contribute to dynamic development teams. 
+                    Proficient in multiple programming languages and frameworks with hands-on experience in full-stack development.
+                </p>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section>
+            <h2 class="section-title">Education</h2>
+            <div class="glass-card">
+                <div class="card-title">Bachelor of Science in Information Technology</div>
+                <div class="card-subtitle">University Name • Graduation: 2026</div>
+                <p class="card-description">
+                    Completed comprehensive coursework in software development, database management, web technologies, 
+                    and software engineering principles. GPA: 3.8/4.0
+                </p>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-badge">JavaScript</div>
+                <div class="skill-badge">React</div>
+                <div class="skill-badge">HTML/CSS</div>
+                <div class="skill-badge">Python</div>
+                <div class="skill-badge">Node.js</div>
+                <div class="skill-badge">SQL</div>
+                <div class="skill-badge">MongoDB</div>
+                <div class="skill-badge">Git</div>
+                <div class="skill-badge">REST APIs</div>
+                <div class="skill-badge">Responsive Design</div>
+                <div class="skill-badge">UI/UX Design</div>
+                <div class="skill-badge">Agile/Scrum</div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section>
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="glass-card">
+                <div class="card-title">E-Commerce Web Application</div>
+                <div class="card-subtitle">Full Stack Development</div>
+                <p class="card-description">
+                    Developed a complete e-commerce platform using React, Node.js, and MongoDB. Implemented user authentication, 
+                    product catalog, shopping cart, and payment integration.
+                </p>
+                <ul>
+                    <li>Designed responsive UI with glassmorphism design patterns</li>
+                    <li>Built RESTful APIs for product and order management</li>
+                    <li>Implemented JWT authentication and authorization</li>
+                </ul>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-title">Task Management System</div>
+                <div class="card-subtitle">Web Application</div>
+                <p class="card-description">
+                    Created a collaborative task management application with real-time updates and user collaboration features.
+                </p>
+                <ul>
+                    <li>Built with React and Firebase for real-time database</li>
+                    <li>Implemented drag-and-drop functionality</li>
+                    <li>Integrated user authentication and notifications</li>
+                </ul>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-title">Portfolio Website</div>
+                <div class="card-subtitle">Frontend Development</div>
+                <p class="card-description">
+                    Designed and developed a personal portfolio website showcasing projects and skills with modern UI/UX principles.
+                </p>
+                <ul>
+                    <li>Implemented smooth animations and transitions</li>
+                    <li>Optimized for performance and SEO</li>
+                    <li>Mobile-first responsive design</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section>
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="glass-card">
+                <div class="card-title">Internship - Web Developer</div>
+                <div class="card-subtitle">Tech Company Name</div>
+                <div class="meta-info">
+                    <span class="date-range">Jan 2025 - Dec 2025</span>
+                </div>
+                <p class="card-description" style="margin-top: 12px;">
+                    Gained hands-on experience in web development and worked on real-world projects.
+                </p>
+                <ul>
+                    <li>Collaborated with senior developers on feature development</li>
+                    <li>Participated in code reviews and agile sprint planning</li>
+                    <li>Fixed bugs and optimized existing codebase</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section>
+            <h2 class="section-title">Certifications</h2>
+            <div class="glass-card">
+                <ul>
+                    <li>React Developer Certification - Online Platform</li>
+                    <li>Full Stack Web Development - Bootcamp</li>
+                    <li>Google Cloud Fundamentals - Cloud Computing Basics</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2026 Your Name. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "maize-farming-app",
+    "resume": "rufas-resume"
+  },
+  "targets": {},
+  "etags": {}
+}
