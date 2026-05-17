@@ -62,6 +62,29 @@ body {
   letter-spacing: 1px;
 }
 
+.download-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 30px;
+}
+
+.download-button {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.download-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
 .contact-info {
   display: flex;
   justify-content: center;
@@ -71,18 +94,110 @@ body {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.pdf-ready {
+  background: #fff !important;
+  color: #000 !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
-.icon {
-  font-size: 1.2em;
+.pdf-ready .header,
+.pdf-ready .section-title,
+.pdf-ready .card-title,
+.pdf-ready .card-subtitle,
+.pdf-ready .card-description,
+.pdf-ready .contact-info,
+.pdf-ready .meta-info,
+.pdf-ready ul li,
+.pdf-ready .footer,
+.pdf-ready .skill-badge {
+  color: #000 !important;
 }
 
-section {
-  margin-bottom: 35px;
+.pdf-ready .glass-card {
+  background: #f7f7f7 !important;
+  border-color: #ddd !important;
+}
+
+.pdf-ready .contact-item {
+  color: #000 !important;
+}
+
+/* Reduce base font-size and tweak spacing for PDF export so text fits pages */
+.pdf-ready {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.pdf-ready .container {
+  padding: 20px !important;
+}
+
+.pdf-ready .name {
+  font-size: 36px !important;
+}
+
+.pdf-ready .title {
+  font-size: 14px !important;
+}
+
+.pdf-ready .card-title {
+  font-size: 16px !important;
+}
+
+.pdf-ready .card-description,
+.pdf-ready ul li,
+.pdf-ready .contact-item,
+.pdf-ready .skill-badge {
+  font-size: 12px !important;
+}
+
+/* Ensure no horizontal overflow in PDF rendering */
+.pdf-ready * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  word-wrap: break-word !important;
+}
+
+.pdf-ready .download-container {
+  display: none !important;
+}
+
+.pdf-ready section,
+.pdf-ready .glass-card {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.pdf-ready .section-title {
+  page-break-after: avoid;
+}
+
+.pdf-ready .card-description {
+  widows: 2;
+  orphans: 2;
+}
+
+/* Force consistent, smaller fonts and wrapping for PDF export */
+.pdf-ready,
+.pdf-ready * {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.pdf-ready .name {
+  font-size: 28px !important;
+}
+
+.pdf-ready .title {
+  font-size: 13px !important;
+}
+
+.pdf-ready .card-title {
+  font-size: 15px !important;
 }
 
 .section-title {
@@ -200,6 +315,45 @@ ul li:before {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9em;
+}
+
+@page {
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+  }
+
+  .app {
+    background: none;
+    min-height: auto;
+    padding: 0;
+  }
+
+  .container {
+    background: #fff;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+
+  .download-button {
+    display: none;
+  }
+
+  .header,
+  .contact-info,
+  .footer,
+  section {
+    color: #000;
+    break-inside: avoid;
+  }
 }
 
 @media (max-width: 768px) {
